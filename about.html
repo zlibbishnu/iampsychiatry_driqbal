@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meet Dr Iqbal Mohiuddin, Consultant Psychiatrist and Psychotherapist at IamPsychiatry in Luton.">
+<title>Dr Iqbal Mohiuddin | Consultant Psychiatrist | IamPsychiatry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --ink:#102a2b;--muted:#617476;--mint:#19d8a4;--mint-dark:#0da981;
+ --mint-soft:#eafff7;--teal:#0b6964;--cream:#f7fbf9;--white:#fff;
+ --line:#dce9e5;--shadow:0 22px 65px rgba(16,42,43,.11);--max:1180px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);line-height:1.65;overflow-x:hidden;background:#fff}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+.section{padding:105px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--teal);font-weight:800;font-size:.76rem;text-transform:uppercase;letter-spacing:.15em}
+.eyebrow:before{content:"";width:27px;height:2px;background:var(--mint)}
+.title{font-family:Manrope,sans-serif;font-size:clamp(2.1rem,4.5vw,4rem);line-height:1.04;letter-spacing:-.055em;margin:15px 0 18px}
+.copy{color:var(--muted);max-width:730px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:14px 21px;font-weight:800;border:1px solid transparent;transition:.25s;cursor:pointer}
+.primary{background:var(--mint);color:#062e27;box-shadow:0 10px 25px rgba(25,216,164,.22)}
+.primary:hover{transform:translateY(-3px)}
+.ghost{border-color:var(--line);background:#fff}
+.ghost:hover{border-color:var(--mint);transform:translateY(-3px)}
+
+.topbar{background:var(--ink);color:#dff8ef;font-size:.76rem}
+.topbar-inner{min-height:36px;display:flex;justify-content:center;align-items:center;gap:20px}
+.topbar strong{color:var(--mint)}
+header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,233,229,.8)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px}
+.mark{width:39px;height:39px;border-radius:13px;background:var(--ink);color:var(--mint);display:grid;place-items:center;font-family:Manrope;font-weight:800}
+.brand-name{font-family:Manrope;font-weight:800;letter-spacing:-.04em}.brand-name span{color:var(--mint-dark)}
+.links{display:flex;gap:4px;align-items:center}
+.links a{font-size:.83rem;font-weight:700;color:#536768;padding:10px 11px;border-radius:10px}
+.links a:hover,.links a.active{background:var(--mint-soft);color:var(--teal)}
+.menu{display:none;background:none;border:0;font-size:1.5rem}
+
+.hero{background:radial-gradient(circle at 80% 20%,rgba(25,216,164,.2),transparent 27%),linear-gradient(135deg,#f5fffb,#fff 62%);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:580px;height:580px;border:1px solid rgba(25,216,164,.13);border-radius:50%;right:-300px;top:-230px}
+.hero-grid{min-height:calc(100vh - 112px);display:grid;grid-template-columns:1.02fr .98fr;gap:65px;align-items:center;position:relative;z-index:1}
+.hero h1{font-family:Manrope;font-size:clamp(3rem,6.2vw,5.8rem);line-height:.93;letter-spacing:-.07em;margin:22px 0}
+.hero h1 span{color:var(--mint-dark)}
+.hero-lead{font-size:1.06rem;color:var(--muted);max-width:650px}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin:29px 0}
+.hero-meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.76rem}
+.meta{display:flex;align-items:center;gap:7px}.dot{width:7px;height:7px;border-radius:50%;background:var(--mint)}
+
+.portrait-wrap{position:relative;max-width:470px;margin-left:auto}
+.portrait-card{background:var(--ink);padding:14px;border-radius:34px;box-shadow:var(--shadow);transform:rotate(2deg);transition:.45s}
+.portrait-wrap:hover .portrait-card{transform:rotate(0) translateY(-7px)}
+.portrait-card img{width:100%;display:block;aspect-ratio:4/4.55;object-fit:cover;border-radius:24px}
+.portrait-info{padding:21px 10px 8px;color:#fff}
+.portrait-info small{color:#9dc5be;text-transform:uppercase;letter-spacing:.13em;font-weight:800;font-size:.68rem}
+.portrait-info h2{font-family:Manrope;font-size:1.55rem;margin:4px 0;letter-spacing:-.04em}
+.portrait-info p{color:#abc8c1;font-size:.82rem}
+.float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow);padding:15px 17px}
+.float strong{display:block;font-family:Manrope;font-size:1.2rem}.float span{font-size:.68rem;color:var(--muted)}
+.float.one{top:40px;right:-25px;animation:float 5s infinite ease-in-out}.float.two{bottom:50px;left:-35px;animation:float 6s infinite reverse ease-in-out}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{text-align:center;padding:25px;border-right:1px solid var(--line)}.stat:last-child{border-right:0}
+.stat b{display:block;font-family:Manrope;font-size:1.45rem}.stat span{font-size:.72rem;color:var(--muted)}
+
+.split{display:grid;grid-template-columns:.78fr 1.22fr;gap:70px;align-items:start}
+.sticky{position:sticky;top:110px}
+.quote{margin-top:28px;border-left:3px solid var(--mint);padding:14px 0 14px 19px;color:var(--teal);font-family:Manrope;font-weight:700}
+.text p{color:var(--muted);margin-bottom:19px}
+.highlight{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
+.highlight-card{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff;transition:.25s}
+.highlight-card:hover{transform:translateY(-4px);border-color:#b8e8d8}
+.highlight-card b{font-family:Manrope;color:var(--teal);font-size:1.3rem;display:block}.highlight-card span{font-size:.73rem;color:var(--muted)}
+
+.dark{background:var(--ink);color:#fff}.dark .eyebrow{color:#a8d6ca}.dark .copy{color:#a9c2bd}
+.timeline{position:relative;margin-top:52px}.timeline:before{content:"";position:absolute;left:84px;top:0;bottom:0;width:1px;background:rgba(255,255,255,.13)}
+.t-row{display:grid;grid-template-columns:85px 1fr;gap:40px;padding:0 0 42px;position:relative}
+.t-year{color:var(--mint);font-family:Manrope;font-weight:800;font-size:.82rem}
+.t-content{padding-left:0}.t-content:before{content:"";position:absolute;left:79px;top:3px;width:11px;height:11px;border:3px solid var(--ink);background:var(--mint);border-radius:50%;z-index:2}
+.t-content h3{font-family:Manrope;font-size:1.1rem;margin-bottom:6px}.t-content p{color:#9eb8b2;font-size:.82rem;max-width:760px}
+
+.expertise{background:var(--cream)}
+.horizontal{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 3px 25px;margin-top:42px}
+.card{min-width:265px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:24px;padding:25px;transition:.3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.icon{width:45px;height:45px;border-radius:14px;background:var(--mint-soft);display:grid;place-items:center;color:var(--teal);font-weight:900;margin-bottom:48px}
+.card h3{font-family:Manrope;font-size:1.1rem;margin-bottom:8px}.card p{font-size:.78rem;color:var(--muted)}
+
+.tabs{margin-top:45px;display:grid;grid-template-columns:290px 1fr;gap:18px}
+.tab-list{display:flex;flex-direction:column;gap:7px}
+.tab-btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px 16px;text-align:left;font-weight:800;color:var(--muted);cursor:pointer;transition:.2s}
+.tab-btn.active,.tab-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab-panel{display:none;border:1px solid var(--line);border-radius:25px;padding:31px;background:#fff;animation:fade .3s}
+.tab-panel.active{display:block}
+.tab-panel h3{font-family:Manrope;font-size:1.45rem;margin-bottom:10px}.tab-panel p{color:var(--muted);font-size:.87rem;margin-bottom:13px}
+.tab-panel ul{list-style:none;display:grid;gap:8px}.tab-panel li{font-size:.78rem;color:var(--muted)}.tab-panel li:before{content:"✓";color:var(--mint-dark);font-weight:900;margin-right:8px}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}
+.media-card{border:1px solid var(--line);border-radius:25px;padding:27px;background:#fff}
+.media-card .label{font-size:.68rem;text-transform:uppercase;letter-spacing:.13em;color:var(--mint-dark);font-weight:900}
+.media-card h3{font-family:Manrope;font-size:1.15rem;margin:13px 0 9px}.media-card p{font-size:.8rem;color:var(--muted)}
+.media-card.full{grid-column:1/-1;background:var(--ink);color:#fff}.media-card.full p{color:#a7c0bb}
+
+.members{background:var(--cream)}
+.pill-cloud{display:flex;gap:9px;flex-wrap:wrap;margin-top:32px}
+.pill{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-size:.75rem;font-weight:800;color:#4f6768}
+.provider-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:35px}
+.provider{border:1px solid var(--line);background:#fff;border-radius:20px;padding:22px;text-align:center;font-family:Manrope;font-weight:800;color:var(--teal)}
+
+.cta{background:linear-gradient(135deg,#eafff7,#f8fbf9)}
+.cta-box{background:var(--ink);color:#fff;border-radius:34px;padding:58px;display:flex;align-items:center;justify-content:space-between;gap:35px;position:relative;overflow:hidden}
+.cta-box:after{content:"";position:absolute;width:350px;height:350px;border:1px solid rgba(25,216,164,.15);border-radius:50%;right:-160px;top:-180px}
+.cta-box .copy{color:#aac2bd}.cta-box .eyebrow{color:#a9d6cb}
+
+footer{background:#071b1c;color:#8da7a2;padding:55px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:40px}
+footer .brand-name{color:#fff}.footer-desc{font-size:.78rem;max-width:410px;margin-top:15px}
+.footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:#fff;margin-bottom:14px}
+.footer-col a{display:block;font-size:.76rem;margin:8px 0}.footer-col a:hover{color:var(--mint)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);margin-top:40px;padding-top:18px;font-size:.67rem;display:flex;justify-content:space-between}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:900px){
+ .links{display:none;position:absolute;top:76px;left:0;right:0;background:#fff;padding:12px 20px 18px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}
+ .links.open{display:flex}.menu{display:block}
+ .nav>.primary{display:none}
+ .hero-grid,.split{grid-template-columns:1fr}.hero-grid{padding:75px 0}.portrait-wrap{margin:auto}.sticky{position:static}
+ .tabs{grid-template-columns:1fr}.tab-list{flex-direction:row;overflow-x:auto}.tab-btn{white-space:nowrap}
+ .timeline:before{left:62px}.t-row{grid-template-columns:63px 1fr;gap:28px}.t-content:before{left:57px}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+ .container{width:calc(100% - 26px)}.section{padding:75px 0}.topbar-inner{font-size:.65rem;padding:7px;text-align:center}
+ .hero h1{font-size:3.25rem}.float.one{right:-4px}.float.two{left:-4px}
+ .stats-grid{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+ .highlight,.media-grid{grid-template-columns:1fr}.media-card.full{grid-column:auto}
+ .provider-grid{grid-template-columns:1fr}.cta-box{padding:35px 25px;display:block}.cta-box .btn{margin-top:22px}
+ .footer-grid{grid-template-columns:1fr}.footer-bottom{display:block}.footer-bottom div+div{margin-top:7px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+<div class="topbar"><div class="container topbar-inner"><span><strong>IamPsychiatry</strong> · Private Psychiatry & ADHD Specialist</span><span>Consultations by appointment · Luton</span></div></div>
+
+<header>
+ <div class="container nav">
+  <a href="index.html" class="brand"><span class="mark">i</span><span class="brand-name">Iam<span>Psychiatry</span></span></a>
+  <nav class="links" id="links">
+   <a href="index.html">Home</a>
+   <a href="#profile" class="active">Dr Mohiuddin</a>
+   <a href="#experience">Experience</a>
+   <a href="#expertise">Expertise</a>
+   <a href="#media">Publications</a>
+   <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn primary" href="index.html#contact">Book a consultation ↗</a>
+  <button class="menu" id="menu" aria-label="Open menu">☰</button>
+ </div>
+</header>
+
+<main>
+<section class="hero" id="profile">
+ <div class="container hero-grid">
+  <div class="reveal">
+   <span class="eyebrow">Consultant Psychiatrist · Luton</span>
+   <h1>Meet the doctor<br>behind the <span>care.</span></h1>
+   <p class="hero-lead">
+    <strong>Dr Iqbal Mohiuddin</strong> is a Consultant Psychiatrist and Psychotherapist with
+    more than 27 years of NHS and private medical experience, providing evidence-based,
+    personalised psychiatric care.
+   </p>
+   <div class="hero-actions">
+    <a class="btn primary" href="index.html#contact">Book an assessment →</a>
+    <a class="btn ghost" href="#experience">Explore credentials</a>
+   </div>
+   <div class="hero-meta">
+    <span class="meta"><i class="dot"></i> GMC Specialist Register · General Psychiatry</span>
+    <span class="meta"><i class="dot"></i> MRCPsych since 2009</span>
+   </div>
+  </div>
+
+  <div class="portrait-wrap reveal">
+   <div class="float one"><strong>1999</strong><span>GMC licence to practise</span></div>
+   <div class="float two"><strong>2013</strong><span>GMC Specialist Register</span></div>
+   <div class="portrait-card">
+    <img src="doctor-iqbal.png" alt="Dr Iqbal Mohiuddin, Consultant Psychiatrist">
+    <div class="portrait-info">
+     <small>Consultant Psychiatrist & Psychotherapist</small>
+     <h2>Dr Iqbal Mohiuddin</h2>
+     <p>Adult ADHD · Addiction Psychiatry · Psychotherapy</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="stats">
+ <div class="container stats-grid">
+  <div class="stat"><b>27+ years</b><span>NHS & private experience</span></div>
+  <div class="stat"><b>16+ years</b><span>Private Consultant Psychiatrist</span></div>
+  <div class="stat"><b>2013</b><span>GMC Specialist Register</span></div>
+  <div class="stat"><b>50+ hrs</b><span>CPD undertaken annually</span></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="container split">
+  <div class="sticky reveal">
+   <span class="eyebrow">Professional profile</span>
+   <h2 class="title">Experience matters.<br>So does perspective.</h2>
+   <p class="copy">A clinical career built across NHS psychiatry, private practice, psychotherapy and specialist mental healthcare.</p>
+   <div class="quote">“I practise evidence-based medicine and psychiatry.”</div>
+  </div>
+  <div class="text reveal">
+   <p>I have been a British medical doctor and NHS psychiatrist for over 25 years and a private Consultant Psychiatrist for over 16 years. I practise evidence-based medicine and psychiatry.</p>
+   <p>Born, bred and educated in London, I graduated from University College London (UCL) Medical School in 1999. Since 2000, I have trained and worked full-time as an NHS psychiatrist in Luton and Bedfordshire.</p>
+   <p>I have worked part-time for East London NHS Foundation Trust, rated Outstanding by the CQC, since 2016. I have worked as a Consultant Psychiatrist (General Adult Psychiatry) and Psychotherapist since 2008, and have successfully treated private patients since 2007.</p>
+   <p>My clinical experience includes adult patients with Adult ADHD, addictions, anxiety, bipolar disorder, depression, psychosis, PTSD, OCD and personality disorder.</p>
+   <p>I have special interests as an Adult ADHD Psychiatrist, Addiction Psychiatrist and Psychotherapist, with further specialist training in Adult ADHD assessment, diagnosis and management; management of drug misuse; Cognitive Behavioural Therapy (CBT); and Human Givens Therapy.</p>
+   <p>Appreciating the mind-body link, I use mental health therapy and medication only when needed in combination for the safe and timely recovery of my patients. I am also experienced in preparing GP reports and independent Expert Psychiatric Reports for courts, solicitors, Occupational Health departments, private companies and private patients.</p>
+   <p>Whilst English is my first language, I can also speak and understand Bangla (Standard Bengali).</p>
+   <div class="highlight">
+    <div class="highlight-card"><b>UCL Medical School</b><span>Graduated 1999</span></div>
+    <div class="highlight-card"><b>General Adult Psychiatry</b><span>Consultant & Psychotherapist since 2008</span></div>
+    <div class="highlight-card"><b>Specialist interests</b><span>Adult ADHD · Addiction · Psychotherapy</span></div>
+    <div class="highlight-card"><b>Expert reports</b><span>Courts · Solicitors · Occupational Health · Private patients</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section dark" id="experience">
+ <div class="container">
+  <span class="eyebrow reveal">Career & professional milestones</span>
+  <h2 class="title reveal">A career grounded in<br>clinical practice.</h2>
+  <p class="copy reveal">Key milestones and professional development from the information provided by IamPsychiatry.</p>
+  <div class="timeline">
+   <div class="t-row reveal"><div class="t-year">1999</div><div class="t-content"><h3>Medical qualification & licence to practise</h3><p>Graduated from University College London (UCL) Medical School and has held a UK GMC licence to practise since 1999.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2000</div><div class="t-content"><h3>NHS psychiatry in Luton & Bedfordshire</h3><p>Trained and worked full-time as an NHS psychiatrist in Luton and Bedfordshire from 2000.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2007</div><div class="t-content"><h3>Private patient care</h3><p>Successfully treating private patients since 2007.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2008</div><div class="t-content"><h3>Consultant Psychiatrist & Psychotherapist</h3><p>Working as a Consultant Psychiatrist in General Adult Psychiatry and Psychotherapist since 2008.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2009</div><div class="t-content"><h3>MRCPsych</h3><p>Member of the Royal College of Psychiatrists since 2009.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2013</div><div class="t-content"><h3>GMC Specialist Register</h3><p>On the GMC Specialist Register for General Psychiatry since 2013.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2016</div><div class="t-content"><h3>East London NHS Foundation Trust</h3><p>Working part-time for East London NHS Foundation Trust since 2016.</p></div></div>
+   <div class="t-row reveal"><div class="t-year">2026</div><div class="t-content"><h3>Most recent GMC revalidation</h3><p>Last revalidated with the GMC in 2026; annual appraisals are undertaken with the CQC-registered NHS trust employer.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section expertise" id="expertise">
+ <div class="container">
+  <span class="eyebrow reveal">Clinical expertise</span>
+  <h2 class="title reveal">Specialist interests.<br>Broad psychiatric experience.</h2>
+  <p class="copy reveal">The practice describes extensive experience in assessment and evidence-based treatment across these adult mental health presentations.</p>
+
+  <div class="horizontal reveal">
+   <article class="card"><div class="icon">◎</div><h3>Adult ADHD</h3><p>Assessment, diagnosis and management, including medication pathways.</p></article>
+   <article class="card"><div class="icon">↗</div><h3>Addiction Psychiatry</h3><p>Specialist interest in addictions and management of drug misuse.</p></article>
+   <article class="card"><div class="icon">◌</div><h3>Anxiety</h3><p>Assessment and evidence-based treatment planning for anxiety disorders.</p></article>
+   <article class="card"><div class="icon">+</div><h3>Depression</h3><p>Psychiatric assessment and personalised treatment planning.</p></article>
+   <article class="card"><div class="icon">◇</div><h3>Bipolar Disorder</h3><p>Assessment, diagnostic review and treatment planning.</p></article>
+   <article class="card"><div class="icon">✦</div><h3>PTSD & OCD</h3><p>Assessment and treatment planning for PTSD, OCD and related presentations.</p></article>
+   <article class="card"><div class="icon">□</div><h3>Psychosis</h3><p>Specialist psychiatric assessment and clinical management.</p></article>
+   <article class="card"><div class="icon">∞</div><h3>Personality Disorder</h3><p>Assessment and evidence-based treatment approaches.</p></article>
+  </div>
+
+  <div class="tabs reveal">
+   <div class="tab-list">
+    <button class="tab-btn active" data-tab="approach">Whole-person approach</button>
+    <button class="tab-btn" data-tab="therapy">Therapy & medication</button>
+    <button class="tab-btn" data-tab="reports">Expert psychiatric reports</button>
+    <button class="tab-btn" data-tab="language">Communication</button>
+   </div>
+   <div>
+    <div class="tab-panel active" id="approach"><h3>Mind + body + context</h3><p>The source describes a biopsychosocial and whole-person approach, appreciating the mind-body link in clinical care.</p><ul><li>Personalised assessment</li><li>Evidence-based psychiatry</li><li>Collaborative treatment planning</li></ul></div>
+    <div class="tab-panel" id="therapy"><h3>Therapy when useful. Medication when needed.</h3><p>Dr Mohiuddin combines mental health therapy and medication when clinically appropriate, with the stated aim of safe and timely recovery.</p><ul><li>CBT training</li><li>Human Givens Therapy training</li><li>Medication management where indicated</li></ul></div>
+    <div class="tab-panel" id="reports"><h3>Clinical reports beyond the consultation room</h3><p>Experience includes preparing GP reports and independent Expert Psychiatric Reports.</p><ul><li>Courts & solicitors</li><li>Occupational Health departments</li><li>Private companies and private patients</li></ul></div>
+    <div class="tab-panel" id="language"><h3>English & Bangla</h3><p>English is Dr Mohiuddin’s first language. He can also speak and understand Bangla (Standard Bengali).</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="media">
+ <div class="container">
+  <span class="eyebrow reveal">Publications & media</span>
+  <h2 class="title reveal">Clinical work beyond<br>the consultation.</h2>
+  <p class="copy reveal">Selected publications and media involvement listed in the supplied professional profile.</p>
+
+  <div class="media-grid">
+   <article class="media-card reveal"><span class="label">Daily Mail Online Health · 2017</span><h3>Alcohol and dependence</h3><p>Contributed to a health article published on 10 August 2017: “Are YOU drinking too much? Answer these 10 questions to find out: Experts reveal the classic warning signs you've become dependent on booze”.</p></article>
+   <article class="media-card reveal"><span class="label">BBC Northern Ireland · 2019</span><h3>Life and Death on Heroin</h3><p>Involved in the documentary broadcast in March 2019, looking at heroin addiction, acute treatment and long-term recovery.</p></article>
+   <article class="media-card full reveal"><span class="label">Research publication · 2021</span><h3>The Role of Religiosity in Depression and Anxiety among Muslim Students in the UK</h3><p>Co-author of the research article by Zobeda Abdullah, Samantha Banbury, Amanda Visick and Iqbal Mohiuddin, published in the Journal of Islamic and Muslim Studies, Indiana University Press, Volume 6, Number 1, May 2021, pp. 84–101.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section members">
+ <div class="container">
+  <span class="eyebrow reveal">Professional memberships</span>
+  <h2 class="title reveal">Connected to the wider<br>medical community.</h2>
+  <p class="copy reveal">Memberships stated in the professional profile.</p>
+  <div class="pill-cloud reveal">
+   <span class="pill">Royal College of Psychiatrists (RCPsych)</span>
+   <span class="pill">Human Givens Institute (HGI)</span>
+   <span class="pill">British Medical Association (BMA)</span>
+   <span class="pill">British Neuro-Psychiatric Association (BNPA)</span>
+   <span class="pill">Medical Council on Alcohol (MCA)</span>
+   <span class="pill">Medical Cannabis Clinicians Society (MCCS)</span>
+  </div>
+
+  <div style="margin-top:65px" class="reveal">
+   <span class="eyebrow">Recognised healthcare providers</span>
+   <h3 style="font-family:Manrope;font-size:1.7rem;margin-top:13px">Insurance recognition</h3>
+   <p class="copy" style="margin-top:8px">The profile states recognition by CIGNA, PruHealth and Western Provident Association (WPA). Patients are advised to discuss private referral and treatment with their insurer.</p>
+   <div class="provider-grid">
+    <div class="provider">CIGNA</div><div class="provider">PruHealth</div><div class="provider">WPA</div>
+   </div>
+  </div>
+
+  <div style="margin-top:55px;border:1px solid var(--line);border-radius:25px;padding:28px;background:#fff" class="reveal">
+   <span class="eyebrow">Voluntary role</span>
+   <h3 style="font-family:Manrope;font-size:1.45rem;margin:12px 0 8px">Reclaim Life · Leighton Buzzard</h3>
+   <p class="copy">Clinical consultant supervisor and trustee for the charity Reclaim Life. The charity provides five free life coaching sessions based on the Human Givens approach to recovery. The source states that volunteer life coaches have received training and monthly supervision with Dr Mohiuddin’s guidance and support since 2014.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section cta" id="contact">
+ <div class="container">
+  <div class="cta-box reveal">
+   <div>
+    <span class="eyebrow">Start your assessment</span>
+    <h2 class="title" style="color:#fff;margin-bottom:12px">Looking for private<br>psychiatric care?</h2>
+    <p class="copy">Explore the assessment pathways, ADHD services and treatment options available through IamPsychiatry.</p>
+   </div>
+   <a class="btn primary" href="index.html#contact">Book a consultation →</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-grid">
+   <div>
+    <a href="index.html" class="brand"><span class="mark">i</span><span class="brand-name">Iam<span>Psychiatry</span></span></a>
+    <p class="footer-desc">Private Psychiatry & ADHD Specialist · Dr Iqbal Mohiuddin. Compassionate, evidence-based psychiatric care in Luton.</p>
+   </div>
+   <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="#experience">Professional experience</a><a href="#expertise">Clinical expertise</a><a href="#media">Publications & media</a></div>
+   <div class="footer-col"><h4>Contact</h4><a href="tel:08007797800">0800 779 7800</a><a href="mailto:driqbal@iampsychiatry.com">driqbal@iampsychiatry.com</a><a href="index.html#contact">Book now</a></div>
+  </div>
+  <div class="footer-bottom"><div>© 2026 IamPsychiatry UK. All rights reserved.</div><div><a href="index.html">← Back to home</a></div></div>
+ </div>
+</footer>
+
+<script>
+const menu=document.getElementById('menu'),links=document.getElementById('links');
+menu.addEventListener('click',()=>links.classList.toggle('open'));
+document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}})
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.tab).classList.add('active');
+ })
+});
+</script>
+</body>
+</html>

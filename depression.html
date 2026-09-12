@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive guide to depression, symptoms, assessment, treatment, recovery and self-help.">
+<title>Depression | Understanding, Treatment & Recovery</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#102a2b;--ink-soft:#4b6262;--mint:#19d8a4;--mint-dark:#0da981;
+  --teal:#0b6964;--cream:#f7fbf9;--white:#fff;--line:#dcebe7;
+  --amber:#e9b949;--rose:#f4dddd;--shadow:0 18px 50px rgba(16,42,43,.09);
+  --shadow-sm:0 10px 28px rgba(16,42,43,.07);--radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+a{color:inherit}button{font:inherit}.container{width:min(1160px,92%);margin:auto}
+
+.topbar{background:var(--ink);color:#dcebea;font-size:13px;padding:9px 0}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.topbar a{text-decoration:none;color:#fff}
+
+header{position:sticky;top:0;z-index:50;background:rgba(247,251,249,.91);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,235,231,.85)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:11px;font-family:Manrope;font-weight:800;font-size:19px}
+.logo-mark{width:36px;height:36px;border-radius:12px;background:var(--mint);display:grid;place-items:center;color:var(--ink);font-weight:900}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:600;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--ink)!important;color:#fff!important;padding:11px 17px;border-radius:999px}
+.menu-btn{display:none;border:0;background:none;font-size:25px;color:var(--ink)}
+
+.hero{padding:72px 0 58px;position:relative;overflow:hidden;background:radial-gradient(circle at 88% 12%,rgba(25,216,164,.17),transparent 30%),radial-gradient(circle at 10% 90%,rgba(11,105,100,.08),transparent 28%)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--teal);font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;margin-bottom:18px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+h1,h2,h3{font-family:Manrope;margin:0;line-height:1.12}
+h1{font-size:clamp(43px,6vw,72px);letter-spacing:-.045em}
+h1 span{color:var(--teal)}
+.hero p{font-size:18px;color:var(--ink-soft);max-width:650px;margin:22px 0 0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border-radius:999px;text-decoration:none;font-weight:700;border:1px solid var(--line);cursor:pointer;transition:.2s}
+.btn-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{background:#fff}
+.hero-photo{border-radius:30px;overflow:hidden;box-shadow:var(--shadow);background:#e8f2ef;min-height:360px}
+.hero-photo img{display:block;width:100%;height:100%;min-height:360px;object-fit:cover}
+
+.section{padding:76px 0}
+.section-head{max-width:790px;margin-bottom:34px}
+.kicker{color:var(--teal);font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+.section-head h2{font-size:clamp(31px,4vw,48px);letter-spacing:-.035em}
+.section-head p{color:var(--ink-soft);font-size:17px;margin:15px 0 0}
+
+.flashcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card-wrap{perspective:1200px;min-height:330px}
+.flashcard{width:100%;height:100%;min-height:330px;position:relative;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.2,1);cursor:pointer}
+.card-wrap.flipped .flashcard{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:27px;display:flex;flex-direction:column}
+.back{transform:rotateY(180deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+.card-number{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--teal);text-transform:uppercase}
+.back .card-number{color:var(--mint)}
+.face h3{font-size:25px;margin:18px 0 10px}
+.face p{margin:0;color:var(--ink-soft);font-size:15px}
+.back p{color:#d7e8e5}
+.flip-hint{margin-top:auto;font-size:12px;font-weight:700;color:var(--teal)}
+.back .flip-hint{color:var(--mint)}
+.card-icon{width:46px;height:46px;border-radius:15px;background:#e8f8f3;display:grid;place-items:center;font-size:21px;margin-top:18px}
+.back .card-icon{background:rgba(25,216,164,.13)}
+
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.qa-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.qa-question{width:100%;background:#fff;border:0;text-align:left;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:15px;cursor:pointer;font-weight:800;color:var(--ink);font-size:16px}
+.qa-question span:last-child{width:28px;height:28px;border-radius:50%;background:#eaf7f3;display:grid;place-items:center;color:var(--teal);flex:none;transition:.2s}
+.qa-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 24px;color:var(--ink-soft)}
+.qa-card.open .qa-answer{max-height:360px;padding-bottom:22px}
+.qa-card.open .qa-question span:last-child{transform:rotate(45deg);background:var(--mint)}
+
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.timeline-card{background:#fff;border:1px solid var(--line);border-radius:21px;padding:22px;box-shadow:var(--shadow-sm);position:relative}
+.timeline-card .num{font-family:Manrope;color:var(--teal);font-size:13px;font-weight:800}
+.timeline-card h3{font-size:20px;margin:8px 0}
+.timeline-card p{margin:0;color:var(--ink-soft);font-size:14px}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:23px;padding:24px;box-shadow:var(--shadow-sm)}
+.fact strong{font-family:Manrope;font-size:31px;color:var(--teal);display:block}
+.fact h3{font-size:19px;margin:9px 0 5px}
+.fact p{margin:0;color:var(--ink-soft);font-size:13px}
+
+.check-section{background:#eef7f4}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.check-card{background:#fff;border:1px solid var(--line);border-radius:25px;padding:28px;box-shadow:var(--shadow-sm)}
+.check-card h3{font-size:23px}.check-card p{color:var(--ink-soft)}
+.choice-row{display:flex;gap:10px;margin-top:18px}
+.choice-row button{flex:1;border:1px solid var(--line);background:#f7fbf9;border-radius:14px;padding:12px;font-weight:800;cursor:pointer;transition:.2s}
+.choice-row button.selected{background:var(--ink);color:#fff;border-color:var(--ink)}
+.result{display:none;margin-top:13px;padding:14px 16px;border-radius:14px;background:#eef7f4;color:var(--teal);font-size:14px}
+.result.show{display:block}
+
+.treatment-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.treatment-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:29px;box-shadow:var(--shadow-sm)}
+.treatment-card h3{font-size:27px;margin-bottom:13px}.treatment-card p{color:var(--ink-soft)}
+.treatment-list{display:grid;gap:10px;margin-top:20px}
+.treatment-item{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:15px;background:#f5faf8}
+.tick{width:27px;height:27px;border-radius:9px;background:var(--mint);display:grid;place-items:center;font-weight:900;flex:none}
+.treatment-item strong{font-size:14px}.treatment-item span{display:block;color:var(--ink-soft);font-size:13px}
+
+.recovery{background:var(--ink);color:#fff;border-radius:30px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.recovery h3{font-size:31px}.recovery p{color:#cfe0de}
+.progress{display:grid;gap:13px}
+.progress-row{display:grid;grid-template-columns:115px 1fr;gap:13px;align-items:center;font-size:13px;color:#d9e9e6}
+.bar{height:9px;border-radius:99px;background:rgba(255,255,255,.13);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--mint);border-radius:99px}
+
+.support{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.support-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:27px;box-shadow:var(--shadow-sm)}
+.support-card h3{font-size:23px}.support-card p{color:var(--ink-soft)}
+.support-card ul{padding-left:20px;color:var(--ink-soft)}
+.support-card li{margin:9px 0}
+.emergency{background:#fff7f4;border-color:#f0d9d0}
+.emergency strong{color:#8b4b38}
+
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.resource{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;text-decoration:none;transition:.2s}
+.resource:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.resource small{display:block;color:var(--teal);font-weight:800;text-transform:uppercase;font-size:10px;letter-spacing:.1em}
+.resource strong{display:block;font-family:Manrope;margin-top:8px}.resource span{font-size:13px;color:var(--ink-soft)}
+
+.cta{background:var(--ink);color:#fff;border-radius:32px;padding:46px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cta p{color:#cfe0de;max-width:650px;margin:12px 0 0}.cta .btn{background:var(--mint);border-color:var(--mint);color:var(--ink)}
+footer{padding:35px 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero-grid,.treatment-grid,.recovery{grid-template-columns:1fr}
+  .flashcards,.facts{grid-template-columns:1fr 1fr}
+  .timeline{grid-template-columns:1fr 1fr}
+  .resources{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .topbar-inner{justify-content:center;text-align:center}.topbar-inner span:first-child{display:none}
+  .nav-links{position:absolute;left:4%;right:4%;top:70px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:15px;display:none;flex-direction:column;align-items:stretch;box-shadow:var(--shadow)}
+  .nav-links.show{display:flex}.menu-btn{display:block}.nav-links a{padding:10px 12px}
+  .hero{padding-top:50px}.hero-photo,.hero-photo img{min-height:285px}
+  .flashcards,.qa,.facts,.timeline,.check-grid,.support{grid-template-columns:1fr}
+  .section{padding:58px 0}.cta{padding:32px;display:block}.cta .btn{margin-top:20px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Private Depression Treatment • Assessment • Therapy • Recovery</span>
+    <a href="booking.html">Book a consultation →</a>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="index.html"><span class="logo-mark">T</span>Thomson Clinic</a>
+    <button class="menu-btn" aria-label="Open navigation" onclick="toggleMenu()">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">Dr Mohiuddin</a>
+      <a href="adult-adhd.html">Adult ADHD</a>
+      <a href="anxiety.html">Anxiety</a>
+      <a href="booking.html">Booking</a>
+      <a class="nav-cta" href="#learn">Learn depression</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Private depression treatment in the UK</div>
+      <h1>Understand depression.<br><span>Make space for recovery.</span></h1>
+      <p>
+        An interactive guide to depression — what it is, how it can present,
+        how assessment works, treatment options and practical steps that may support recovery.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#learn">Start learning ↓</a>
+        <a class="btn btn-secondary" href="#support">Find support</a>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <img src="https://static.wixstatic.com/media/11062b_2a55fdcdab4e4e9aa893887b5612bebf~mv2.jpeg/v1/fill/w_302,h_200,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sad%20on%20Couch.jpeg" alt="Person sitting on a couch experiencing low mood">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="learn">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Flip to learn</div>
+      <h2>Depression, one card at a time.</h2>
+      <p>Tap a card to reveal the key concept from the supplied source material.</p>
+    </div>
+
+    <div class="flashcards">
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 01 • Foundation</div>
+            <div class="card-icon">◌</div>
+            <h3>What is depression?</h3>
+            <p>Is it simply a period of feeling down?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>It can be a persistent mood disorder.</h3>
+            <p>The supplied material describes depression as a mood disorder causing persistent sadness, hopelessness and loss of interest in activities that were once enjoyable — anhedonia.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 02 • Duration</div>
+            <div class="card-icon">◷</div>
+            <h3>When does low mood become concerning?</h3>
+            <p>Everyone has ups and downs. What does persistence suggest?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Persistence matters.</h3>
+            <p>The supplied material says that if feeling down becomes a persistent problem every day for two weeks or more, this may be a warning of clinical depression.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 03 • Symptoms</div>
+            <div class="card-icon">!</div>
+            <h3>Is depression only emotional?</h3>
+            <p>Think about physical, psychological and social effects.</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>It can affect several domains.</h3>
+            <p>Symptoms described include sadness or emptiness, loss of interest, appetite or sleep changes, fatigue and difficulty concentrating. The source also describes physical, psychological and social symptoms.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 04 • Diagnosis</div>
+            <div class="card-icon">?</div>
+            <h3>How is depression diagnosed?</h3>
+            <p>Is there a single blood test or questionnaire?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Clinical assessment brings it together.</h3>
+            <p>The supplied material describes clinical interviews, self-report questionnaires and behavioural assessments as components of depression assessment.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 05 • Causes & factors</div>
+            <div class="card-icon">◇</div>
+            <h3>Does depression have one cause?</h3>
+            <p>Consider biological, psychological, social and life factors.</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Multiple factors may contribute.</h3>
+            <p>The supplied material lists genetic factors, childhood trauma, stressful life events or changes, bereavement or loss, alcohol or drug use, and physical health problems.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 06 • Treatment</div>
+            <div class="card-icon">+</div>
+            <h3>Is medication the only treatment?</h3>
+            <p>What role can psychological therapy play?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Several approaches may be used.</h3>
+            <p>The supplied material lists therapy, medication or a combination. CBT, interpersonal therapy (IPT) and Human Givens therapy are specifically mentioned.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Frequently asked</div>
+      <h2>Open a question. Get the answer.</h2>
+      <p>Use these expandable cards as a quick-reference FAQ.</p>
+    </div>
+
+    <div class="qa">
+      <div class="qa-card reveal">
+        <button class="qa-question" onclick="toggleQA(this)">
+          <span>What are common symptoms of depression?</span><span>+</span>
+        </button>
+        <div class="qa-answer">
+          The supplied material includes sadness or emptiness, loss of interest in activities, changes in appetite or sleep, fatigue and difficulty concentrating.
+        </div>
+      </div>
+
+      <div class="qa-card reveal">
+        <button class="qa-question" onclick="toggleQA(this)">
+          <span>Can depression be prevented?</span><span>+</span>
+        </button>
+        <div class="qa-answer">
+          The source states there is no surefire way to prevent depression, but strategies such as stress management, regular exercise and a healthy balanced diet may help reduce risk.
+        </div>
+      </div>
+
+      <div class="qa-card reveal">
+        <button class="qa-question" onclick="toggleQA(this)">
+          <span>Can depression happen to determined or successful people?</span><span>+</span>
+        </button>
+        <div class="qa-answer">
+          Yes. The supplied material explicitly states that depression is not a sign of weakness and can happen to determined people.
+        </div>
+      </div>
+
+      <div class="qa-card reveal">
+        <button class="qa-question" onclick="toggleQA(this)">
+          <span>Can alcohol or drugs affect depression?</span><span>+</span>
+        </button>
+        <div class="qa-answer">
+          The supplied material states that alcohol and illicit substance misuse, including cocaine and heroin, can cause and worsen depression.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Recognise the picture</div>
+      <h2>Depression can affect more than mood.</h2>
+      <p>The supplied content emphasises that symptoms may be physical, psychological and social, so assessment and treatment should consider the whole person.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-card reveal"><div class="num">01 • Psychological</div><h3>Sadness & hopelessness</h3><p>Persistent low mood and feelings of hopelessness are central features described in the source.</p></div>
+      <div class="timeline-card reveal"><div class="num">02 • Behavioural</div><h3>Loss of interest</h3><p>Activities that were once enjoyable may lose their appeal, described as anhedonia.</p></div>
+      <div class="timeline-card reveal"><div class="num">03 • Physical</div><h3>Sleep, appetite & energy</h3><p>Changes in sleep or appetite and fatigue may occur.</p></div>
+      <div class="timeline-card reveal"><div class="num">04 • Cognitive</div><h3>Concentration</h3><p>Difficulty concentrating is included among the symptoms described.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Depression facts</div>
+      <h2>Numbers with context.</h2>
+      <p>The following figures are reproduced from the supplied source material and should be read in the context of the dates and references provided there.</p>
+    </div>
+
+    <div class="facts">
+      <div class="fact reveal"><strong>~6%</strong><h3>Clinical criteria</h3><p>The supplied material states that about 6% of the population meets clinical criteria for depression or dysthymia at any one time.</p></div>
+      <div class="fact reveal"><strong>10–20%</strong><h3>Lifetime prevalence</h3><p>The source states that overall lifetime prevalence appears to be 10–20%.</p></div>
+      <div class="fact reveal"><strong>≥50%</strong><h3>Anxiety overlap</h3><p>The supplied material states that at least 50% will also have anxiety problems.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section check-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Interactive check</div>
+      <h2>Yes or no?</h2>
+      <p>Test your understanding of the information presented on this page.</p>
+    </div>
+
+    <div class="check-grid">
+      <div class="check-card reveal">
+        <h3>Depression is a sign of personal weakness.</h3>
+        <p>The supplied source explicitly rejects this framing.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'no')">Yes</button>
+          <button onclick="check(this,'yes')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>Depression can involve physical symptoms.</h3>
+        <p>Think about fatigue, sleep and appetite changes.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'yes')">Yes</button>
+          <button onclick="check(this,'no')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>Therapy can form part of depression treatment.</h3>
+        <p>The supplied material includes CBT, IPT and Human Givens therapy.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'yes')">Yes</button>
+          <button onclick="check(this,'no')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>Alcohol and illicit substance misuse can worsen depression.</h3>
+        <p>This is specifically stated in the supplied source.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'yes')">Yes</button>
+          <button onclick="check(this,'no')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Treatment & recovery</div>
+      <h2>Effective treatment can be multidimensional.</h2>
+      <p>
+        The supplied material describes psychological therapy, medication and combinations of approaches.
+        For moderate or severe depression, it states that NICE recommends antidepressant medication together with
+        a high-intensity psychological intervention.
+      </p>
+    </div>
+
+    <div class="treatment-grid">
+      <div class="treatment-card reveal">
+        <h3>Approaches described in the source</h3>
+        <p>Individual treatment should be determined with an appropriate healthcare professional.</p>
+        <div class="treatment-list">
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Cognitive Behavioural Therapy (CBT)</strong><span>Listed as a psychological treatment for depression.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Interpersonal Therapy (IPT)</strong><span>Listed among common psychological therapies used to treat depression.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Human Givens (HG) therapy</strong><span>Included in the supplied treatment material.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Antidepressant medication</strong><span>The source describes medication as an option and discusses its use in moderate to severe depression.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Lifestyle & stress management</strong><span>Exercise, a healthy balanced diet and stress management are included as supportive strategies.</span></div></div>
+        </div>
+      </div>
+
+      <div class="treatment-card reveal">
+        <h3>Recovery is more than symptom reduction.</h3>
+        <p>
+          The supplied material describes effective and timely treatment as needing to address physical,
+          psychological and social symptoms. Long-term recovery and relapse prevention are also highlighted.
+        </p>
+        <a class="btn btn-primary" href="booking.html">Private mental health assessment →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="recovery reveal">
+      <div>
+        <div class="kicker" style="color:var(--mint)">Think whole-person</div>
+        <h3>Three dimensions of recovery</h3>
+        <p>Use this visual as a learning cue: the supplied material describes depression symptoms as physical, psychological and social.</p>
+      </div>
+      <div class="progress">
+        <div class="progress-row"><span>Psychological</span><div class="bar"><i style="width:88%"></i></div></div>
+        <div class="progress-row"><span>Physical</span><div class="bar"><i style="width:72%"></i></div></div>
+        <div class="progress-row"><span>Social</span><div class="bar"><i style="width:78%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="support">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Support yourself</div>
+      <h2>Small supportive steps matter.</h2>
+      <p>The following strategies come from the supplied source material.</p>
+    </div>
+
+    <div class="support">
+      <div class="support-card reveal">
+        <h3>Helpful foundations</h3>
+        <ul>
+          <li>Use stress-management techniques.</li>
+          <li>Exercise regularly.</li>
+          <li>Maintain a healthy balanced diet.</li>
+          <li>Seek appropriate support when needed.</li>
+        </ul>
+      </div>
+
+      <div class="support-card reveal">
+        <h3>Remember</h3>
+        <p>
+          Depression is not a sign of weakness. The supplied material emphasises that it can affect anyone,
+          including highly determined people.
+        </p>
+        <a class="btn btn-primary" href="mailto:driqbal@iampsychiatry.com?subject=Private%20Depression%20Treatment">Contact the team →</a>
+      </div>
+
+      <div class="support-card emergency reveal">
+        <h3><strong>Urgent support</strong></h3>
+        <p>
+          This educational page is not an emergency service. If someone is at immediate risk of harm or suicide,
+          seek urgent local emergency or crisis support rather than relying on this website.
+        </p>
+      </div>
+
+      <div class="support-card reveal">
+        <h3>Private assessment</h3>
+        <p>
+          If low mood, loss of interest or other symptoms are persistent or significantly affecting daily life,
+          a professional mental health assessment may help clarify the problem and appropriate treatment options.
+        </p>
+        <a class="btn btn-secondary" href="booking.html">View booking options →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Further reading</div>
+      <h2>Clinical guidance.</h2>
+      <p>The principal external source supplied for this page is NICE guidance.</p>
+    </div>
+    <div class="resources">
+      <a class="resource reveal" href="https://www.nice.org.uk/guidance/cg90/chapter/Recommendations#step-1-recognition-assessment-and-initial-management" target="_blank" rel="noopener">
+        <small>NICE</small><strong>Depression in adults</strong><span>Recognition, assessment and management</span>
+      </a>
+      <a class="resource reveal" href="https://www.iampsychiatry.com/human-givens-therapy" target="_blank" rel="noopener">
+        <small>Therapy</small><strong>Human Givens approach</strong><span>Further information supplied with the source</span>
+      </a>
+      <a class="resource reveal" href="http://www.lift-depression.com/" target="_blank" rel="noopener">
+        <small>Further reading</small><strong>Lift Depression Fast</strong><span>Human Givens approach resource</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <div class="kicker" style="color:var(--mint)">Need professional support?</div>
+        <h2>Take the next step.</h2>
+        <p>Contact the team for private mental health assessment, diagnosis, therapy and depression treatment.</p>
+      </div>
+      <a class="btn" href="mailto:driqbal@iampsychiatry.com?subject=Private%20Depression%20Treatment">Contact the team →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© Thomson Clinic</span>
+    <span>Private Depression Treatment • UK</span>
+    <a href="booking.html">Book a consultation →</a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('show');
+}
+function flipCard(card){
+  card.classList.toggle('flipped');
+}
+function toggleQA(button){
+  const card=button.closest('.qa-card');
+  document.querySelectorAll('.qa-card').forEach(c=>{
+    if(c!==card)c.classList.remove('open');
+  });
+  card.classList.toggle('open');
+}
+function check(button,correct){
+  const card=button.closest('.check-card');
+  card.querySelectorAll('.choice-row button').forEach(b=>b.classList.remove('selected'));
+  button.classList.add('selected');
+  const result=card.querySelector('.result');
+  result.classList.add('show');
+  result.innerHTML=correct==='yes'
+    ? '<strong>Correct.</strong> That matches the key point in this guide.'
+    : '<strong>Not quite.</strong> Re-read the explanation above and try again.';
+}
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('show'));
+});
+</script>
+
+</body>
+</html>

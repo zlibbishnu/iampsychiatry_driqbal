@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive guide to anxiety, symptoms, anxiety disorders, treatment and self-help.">
+<title>Anxiety | Understanding, Treatment & Self-Help</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#102a2b;
+  --ink-soft:#4b6262;
+  --mint:#19d8a4;
+  --mint-dark:#0da981;
+  --teal:#0b6964;
+  --cream:#f7fbf9;
+  --white:#fff;
+  --line:#dcebe7;
+  --amber:#e9b949;
+  --rose:#f4dddd;
+  --blue:#dfeff5;
+  --shadow:0 18px 50px rgba(16,42,43,.09);
+  --shadow-sm:0 10px 28px rgba(16,42,43,.07);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+a{color:inherit}
+button{font:inherit}
+.container{width:min(1160px,92%);margin:auto}
+
+.topbar{background:var(--ink);color:#dcebea;font-size:13px;padding:9px 0}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.topbar a{text-decoration:none;color:#fff}
+
+header{position:sticky;top:0;z-index:50;background:rgba(247,251,249,.91);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,235,231,.85)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:11px;font-family:Manrope;font-weight:800;font-size:19px}
+.logo-mark{width:36px;height:36px;border-radius:12px;background:var(--mint);display:grid;place-items:center;color:var(--ink);font-weight:900}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:600;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{background:var(--ink)!important;color:#fff!important;padding:11px 17px;border-radius:999px}
+.menu-btn{display:none;border:0;background:none;font-size:25px;color:var(--ink)}
+
+.hero{padding:72px 0 58px;position:relative;overflow:hidden;background:radial-gradient(circle at 88% 12%,rgba(25,216,164,.17),transparent 30%),radial-gradient(circle at 10% 90%,rgba(11,105,100,.08),transparent 28%)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--teal);font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;margin-bottom:18px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+h1,h2,h3{font-family:Manrope;margin:0;line-height:1.12}
+h1{font-size:clamp(43px,6vw,72px);letter-spacing:-.045em}
+h1 span{color:var(--teal)}
+.hero p{font-size:18px;color:var(--ink-soft);max-width:650px;margin:22px 0 0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border-radius:999px;text-decoration:none;font-weight:700;border:1px solid var(--line);cursor:pointer;transition:.2s}
+.btn-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{background:#fff}
+.hero-photo{border-radius:30px;overflow:hidden;box-shadow:var(--shadow);background:#e8f2ef;min-height:360px}
+.hero-photo img{display:block;width:100%;height:100%;min-height:360px;object-fit:cover}
+
+.section{padding:76px 0}
+.section-head{max-width:790px;margin-bottom:34px}
+.kicker{color:var(--teal);font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+.section-head h2{font-size:clamp(31px,4vw,48px);letter-spacing:-.035em}
+.section-head p{color:var(--ink-soft);font-size:17px;margin:15px 0 0}
+
+.flashcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card-wrap{perspective:1200px;min-height:330px}
+.flashcard{width:100%;height:100%;min-height:330px;position:relative;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.7,.2,1);cursor:pointer}
+.card-wrap.flipped .flashcard{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:27px;display:flex;flex-direction:column}
+.back{transform:rotateY(180deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+.card-number{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--teal);text-transform:uppercase}
+.back .card-number{color:var(--mint)}
+.face h3{font-size:25px;margin:18px 0 10px}
+.face p{margin:0;color:var(--ink-soft);font-size:15px}
+.back p{color:#d7e8e5}
+.flip-hint{margin-top:auto;font-size:12px;font-weight:700;color:var(--teal)}
+.back .flip-hint{color:var(--mint)}
+.card-icon{width:46px;height:46px;border-radius:15px;background:#e8f8f3;display:grid;place-items:center;font-size:21px;margin-top:18px}
+.back .card-icon{background:rgba(25,216,164,.13)}
+
+.qa{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.qa-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.qa-question{width:100%;background:#fff;border:0;text-align:left;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:15px;cursor:pointer;font-weight:800;color:var(--ink);font-size:16px}
+.qa-question span:last-child{width:28px;height:28px;border-radius:50%;background:#eaf7f3;display:grid;place-items:center;color:var(--teal);flex:none;transition:.2s}
+.qa-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 24px;color:var(--ink-soft)}
+.qa-card.open .qa-answer{max-height:330px;padding-bottom:22px}
+.qa-card.open .qa-question span:last-child{transform:rotate(45deg);background:var(--mint)}
+
+.trigger-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.trigger{background:#fff;border:1px solid var(--line);border-radius:21px;padding:22px;box-shadow:var(--shadow-sm);transition:.2s}
+.trigger:hover{transform:translateY(-3px)}
+.trigger .num{font-family:Manrope;color:var(--teal);font-weight:800;font-size:13px}
+.trigger h3{font-size:20px;margin:8px 0 5px}
+.trigger p{margin:0;color:var(--ink-soft);font-size:14px}
+
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.type-card{background:#fff;border:1px solid var(--line);border-radius:23px;padding:24px;box-shadow:var(--shadow-sm)}
+.type-card h3{font-size:22px;margin:0 0 9px}
+.type-card p{margin:0;color:var(--ink-soft);font-size:14px}
+.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#e8f8f3;color:var(--teal);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:13px}
+
+.check-section{background:#eef7f4}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.check-card{background:#fff;border:1px solid var(--line);border-radius:25px;padding:28px;box-shadow:var(--shadow-sm)}
+.check-card h3{font-size:23px}
+.check-card p{color:var(--ink-soft)}
+.choice-row{display:flex;gap:10px;margin-top:18px}
+.choice-row button{flex:1;border:1px solid var(--line);background:#f7fbf9;border-radius:14px;padding:12px;font-weight:800;cursor:pointer;transition:.2s}
+.choice-row button.selected{background:var(--ink);color:#fff;border-color:var(--ink)}
+.result{display:none;margin-top:13px;padding:14px 16px;border-radius:14px;background:#eef7f4;color:var(--teal);font-size:14px}
+.result.show{display:block}
+
+.treatment-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.treatment-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:29px;box-shadow:var(--shadow-sm)}
+.treatment-card h3{font-size:27px;margin-bottom:13px}
+.treatment-card p{color:var(--ink-soft)}
+.treatment-list{display:grid;gap:10px;margin-top:20px}
+.treatment-item{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:15px;background:#f5faf8}
+.tick{width:27px;height:27px;border-radius:9px;background:var(--mint);display:grid;place-items:center;font-weight:900;flex:none}
+.treatment-item strong{font-size:14px}
+.treatment-item span{display:block;color:var(--ink-soft);font-size:13px}
+
+.breathe{
+  background:var(--ink);color:#fff;border-radius:30px;padding:34px;
+  display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center
+}
+.breathe h3{font-size:31px}
+.breathe p{color:#cfe0de}
+.breath-circle-wrap{display:grid;place-items:center;min-height:230px}
+.breath-circle{
+  width:150px;height:150px;border-radius:50%;background:rgba(25,216,164,.18);
+  border:2px solid var(--mint);display:grid;place-items:center;text-align:center;
+  animation:breathe 11s ease-in-out infinite
+}
+.breath-circle strong{font-family:Manrope;color:var(--mint)}
+.breath-circle small{display:block;color:#d9e9e6;margin-top:4px}
+@keyframes breathe{
+  0%,100%{transform:scale(.78)}
+  50%{transform:scale(1.12)}
+}
+
+.help{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.help-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm)}
+.help-card h3{font-size:23px}
+.help-card ul{padding-left:20px;color:var(--ink-soft)}
+.help-card li{margin:9px 0}
+.emergency{background:#fff7f4;border:1px solid #f0d9d0}
+.samaritans{background:#eff8f5;border-color:#cfece3}
+.phone{font-family:Manrope;font-size:28px;color:var(--teal);text-decoration:none;font-weight:800}
+
+.resources{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.resource{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;text-decoration:none;transition:.2s}
+.resource:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.resource small{display:block;color:var(--teal);font-weight:800;text-transform:uppercase;font-size:10px;letter-spacing:.1em}
+.resource strong{display:block;font-family:Manrope;margin-top:8px}
+.resource span{font-size:13px;color:var(--ink-soft)}
+
+.cta{background:var(--ink);color:#fff;border-radius:32px;padding:46px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cta p{color:#cfe0de;max-width:650px;margin:12px 0 0}
+.cta .btn{background:var(--mint);border-color:var(--mint);color:var(--ink)}
+
+footer{padding:35px 0;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero-grid,.treatment-grid,.breathe{grid-template-columns:1fr}
+  .flashcards,.types{grid-template-columns:1fr 1fr}
+  .resources{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .topbar-inner{justify-content:center;text-align:center}
+  .topbar-inner span:first-child{display:none}
+  .nav-links{position:absolute;left:4%;right:4%;top:70px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:15px;display:none;flex-direction:column;align-items:stretch;box-shadow:var(--shadow)}
+  .nav-links.show{display:flex}
+  .menu-btn{display:block}
+  .nav-links a{padding:10px 12px}
+  .hero{padding-top:50px}
+  .hero-photo,.hero-photo img{min-height:285px}
+  .flashcards,.qa,.trigger-grid,.types,.check-grid,.help{grid-template-columns:1fr}
+  .section{padding:58px 0}
+  .cta{padding:32px;display:block}
+  .cta .btn{margin-top:20px}
+}
+@media(max-width:460px){.resources{grid-template-columns:1fr}h1{font-size:43px}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Private Anxiety Treatment • Understanding • Assessment • Support</span>
+    <a href="booking.html">Book a consultation →</a>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="index.html"><span class="logo-mark">T</span>Thomson Clinic</a>
+    <button class="menu-btn" aria-label="Open navigation" onclick="toggleMenu()">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">Dr Mohiuddin</a>
+      <a href="adult-adhd.html">Adult ADHD</a>
+      <a href="booking.html">Booking</a>
+      <a class="nav-cta" href="#learn">Understand Anxiety</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Private anxiety treatment in the UK</div>
+      <h1>Understand anxiety.<br><span>Break the cycle.</span></h1>
+      <p>
+        An interactive guide to anxiety, its symptoms, common anxiety disorders,
+        treatment approaches and practical self-help strategies.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#learn">Start learning ↓</a>
+        <a class="btn btn-secondary" href="#support">Get support</a>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <img src="https://static.wixstatic.com/media/11062b_c2251b86bf514ce88489b3a4c6e27917~mv2.jpeg/v1/fill/w_303,h_200,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_c2251b86bf514ce88489b3a4c6e27917~mv2.jpeg" alt="Person experiencing anxiety">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="learn">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Flip to learn</div>
+      <h2>What is anxiety?</h2>
+      <p>Tap each card. The answer reveals the central concept in a simple, memorable format.</p>
+    </div>
+
+    <div class="flashcards">
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 01 • Foundation</div>
+            <div class="card-icon">◌</div>
+            <h3>Is anxiety always a disorder?</h3>
+            <p>Anxiety can be uncomfortable — but is every experience of anxiety abnormal?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Anxiety can be normal.</h3>
+            <p>Anxiety is a normal and often healthy emotion. It can become a disorder when it is excessive, persistent and interferes with activities of daily life.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 02 • Experience</div>
+            <div class="card-icon">!</div>
+            <h3>How can anxiety feel?</h3>
+            <p>Think beyond simply “feeling worried”.</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>It can affect mind and body.</h3>
+            <p>It may involve worry, nervousness or unease and can vary in intensity and duration. Physical symptoms can include rapid heartbeat, palpitations, sweating, trembling and shortness of breath.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 03 • Diagnosis</div>
+            <div class="card-icon">?</div>
+            <h3>How is anxiety diagnosed?</h3>
+            <p>Is there one test that confirms an anxiety disorder?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Assessment looks at the whole picture.</h3>
+            <p>The supplied material describes physical examination, psychological evaluation, discussion of symptoms and medical history, with diagnostic criteria such as ICD-10 used by healthcare professionals.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 04 • Symptoms</div>
+            <div class="card-icon">↗</div>
+            <h3>Can anxiety cause physical symptoms?</h3>
+            <p>Or is anxiety purely psychological?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Anxiety can be physical too.</h3>
+            <p>The supplied material includes rapid heartbeat, palpitations, sweating, trembling and shortness of breath, alongside fatigue, muscle tension and sleep or eating disturbances.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 05 • Types</div>
+            <div class="card-icon">◇</div>
+            <h3>Are all anxiety disorders the same?</h3>
+            <p>Different patterns can produce significant distress.</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>There are different disorders.</h3>
+            <p>The supplied material lists Generalised Anxiety Disorder (GAD), Panic Disorder, Social Phobia/Social Anxiety Disorder, Agoraphobia, OCD and PTSD.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="card-wrap reveal" onclick="flipCard(this)">
+        <div class="flashcard">
+          <article class="face front">
+            <div class="card-number">Card 06 • Treatment</div>
+            <div class="card-icon">+</div>
+            <h3>Is medication the only treatment?</h3>
+            <p>What other approaches may form part of treatment?</p>
+            <div class="flip-hint">Tap to reveal ↻</div>
+          </article>
+          <article class="face back">
+            <div class="card-number">Key point</div>
+            <div class="card-icon">✓</div>
+            <h3>Treatment can be multimodal.</h3>
+            <p>The supplied material includes CBT, Human Givens therapy, medication, lifestyle changes, stress-management techniques and breathing/relaxation exercises.</p>
+            <div class="flip-hint">Tap to flip back ↻</div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Recognise the pattern</div>
+      <h2>What can trigger anxiety?</h2>
+      <p>The supplied material describes anxiety as a feeling of unease such as worry or fear, which may be mild, moderate or severe and is typically associated with a fear of loss.</p>
+    </div>
+
+    <div class="trigger-grid">
+      <div class="trigger reveal"><div class="num">01</div><h3>Work</h3><p>Job interviews, pressure at work, unemployment or retirement.</p></div>
+      <div class="trigger reveal"><div class="num">02</div><h3>Family</h3><p>Relationship difficulties, divorce or caring for someone.</p></div>
+      <div class="trigger reveal"><div class="num">03</div><h3>Finances</h3><p>Unexpected bills or borrowing money.</p></div>
+      <div class="trigger reveal"><div class="num">04</div><h3>Health</h3><p>Medical tests, illness, injury or bereavement.</p></div>
+      <div class="trigger reveal"><div class="num">05</div><h3>Education</h3><p>Pressure at school, college or university, including exams.</p></div>
+      <div class="trigger reveal"><div class="num">06</div><h3>Past experiences</h3><p>Bullying, abuse, neglect or trauma.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Different presentations</div>
+      <h2>Anxiety is not one-size-fits-all.</h2>
+      <p>Different anxiety disorders can have different patterns of symptoms and distress.</p>
+    </div>
+    <div class="types">
+      <div class="type-card reveal"><span class="tag">Anxiety</span><h3>Generalised Anxiety Disorder</h3><p>GAD is listed among the anxiety disorders in the supplied material.</p></div>
+      <div class="type-card reveal"><span class="tag">Fear / panic</span><h3>Panic Disorder</h3><p>A recognised anxiety disorder included in the supplied list.</p></div>
+      <div class="type-card reveal"><span class="tag">Social</span><h3>Social Anxiety Disorder</h3><p>Also described as social phobia in the supplied material.</p></div>
+      <div class="type-card reveal"><span class="tag">Situational</span><h3>Agoraphobia</h3><p>Listed as one of the anxiety disorders that may cause significant distress.</p></div>
+      <div class="type-card reveal"><span class="tag">Obsessions</span><h3>OCD</h3><p>Obsessive compulsive disorder is included in the supplied list.</p></div>
+      <div class="type-card reveal"><span class="tag">Trauma</span><h3>PTSD</h3><p>Post-traumatic stress disorder is included among the disorders listed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section check-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Interactive check</div>
+      <h2>Yes or no?</h2>
+      <p>Test your understanding of the key concepts presented on this page.</p>
+    </div>
+
+    <div class="check-grid">
+      <div class="check-card reveal">
+        <h3>Anxiety is always a disorder.</h3>
+        <p>Anxiety can be a normal and often healthy emotion.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'no')">Yes</button>
+          <button onclick="check(this,'yes')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>Anxiety can produce physical symptoms.</h3>
+        <p>Think about heartbeat, sweating, trembling and breathing.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'yes')">Yes</button>
+          <button onclick="check(this,'no')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>CBT can be part of anxiety treatment.</h3>
+        <p>The supplied treatment information includes psychological therapy.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'yes')">Yes</button>
+          <button onclick="check(this,'no')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+
+      <div class="check-card reveal">
+        <h3>Lifestyle and relaxation strategies have no role at all.</h3>
+        <p>The supplied self-help and treatment sections describe exercise, sleep, diet, stress management and breathing exercises.</p>
+        <div class="choice-row">
+          <button onclick="check(this,'no')">Yes</button>
+          <button onclick="check(this,'yes')">No</button>
+        </div>
+        <div class="result"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Treatment</div>
+      <h2>There is more than one way to treat anxiety.</h2>
+      <p>The most suitable approach depends on the individual's symptoms and circumstances and should be discussed with an appropriate healthcare professional.</p>
+    </div>
+
+    <div class="treatment-grid">
+      <div class="treatment-card reveal">
+        <h3>Possible treatment approaches</h3>
+        <p>The supplied material describes psychological, medical and lifestyle approaches.</p>
+        <div class="treatment-list">
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Cognitive Behavioural Therapy (CBT)</strong><span>A psychological therapy listed as a treatment option.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Human Givens (HG) therapy</strong><span>Included among the psychological approaches in the supplied content.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Medication</strong><span>The material mentions antidepressants or other anti-anxiety medication for more severe or chronic anxiety.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Lifestyle changes</strong><span>Diet, exercise, sleep and stress management are included.</span></div></div>
+          <div class="treatment-item"><div class="tick">✓</div><div><strong>Breathing & relaxation</strong><span>7:11 diaphragmatic breathing and relaxation exercises are specifically mentioned.</span></div></div>
+        </div>
+      </div>
+
+      <div class="treatment-card reveal">
+        <h3>When should you seek help?</h3>
+        <p>
+          Anxiety may warrant professional assessment when it becomes excessive, persistent or interferes with
+          daily activities, or when symptoms are severe or chronic.
+        </p>
+        <a class="btn btn-primary" href="booking.html">Private mental health assessment →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="breathe reveal">
+      <div>
+        <div class="kicker" style="color:var(--mint)">Try a calming technique</div>
+        <h3>7:11 diaphragmatic breathing</h3>
+        <p>
+          The supplied material recommends calming breathing exercises such as 7:11 diaphragmatic breathing.
+          Use this as a simple relaxation practice rather than as a substitute for assessment or treatment.
+        </p>
+      </div>
+      <div class="breath-circle-wrap">
+        <div class="breath-circle">
+          <div><strong>7 : 11</strong><small>breathing rhythm</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="support">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Self-help & support</div>
+      <h2>Small steps can support recovery.</h2>
+      <p>These strategies are drawn directly from the supplied material.</p>
+    </div>
+
+    <div class="help">
+      <div class="help-card reveal">
+        <h3>Things you can try</h3>
+        <ul>
+          <li>Talk about your feelings with a friend, family member, health professional or counsellor.</li>
+          <li>Use calming breathing exercises such as 7:11 diaphragmatic breathing.</li>
+          <li>Exercise — running, walking, swimming and yoga may help you relax.</li>
+          <li>Explore strategies for improving sleep if you are struggling to sleep.</li>
+          <li>Eat a healthy balanced diet with regular meals to keep energy levels stable.</li>
+          <li>Consider peer support, where people use their experiences to help each other.</li>
+        </ul>
+      </div>
+
+      <div class="help-card samaritans reveal">
+        <h3>Someone to talk to</h3>
+        <p>The supplied material recommends Samaritans when you need someone to talk to.</p>
+        <a class="phone" href="tel:+44116123">116 123</a>
+        <p style="font-size:13px">Samaritans • free telephone support</p>
+        <a class="btn btn-secondary" href="mailto:jo@samaritans.org">Email Samaritans</a>
+      </div>
+
+      <div class="help-card reveal">
+        <h3>NHS psychological therapies</h3>
+        <p>
+          The supplied material notes that free psychological therapies such as CBT may be available through the NHS,
+          and that people can self-refer directly to an NHS psychological therapy service (IAPT / Wellbeing service)
+          without a GP referral.
+        </p>
+      </div>
+
+      <div class="help-card reveal">
+        <h3>Digital support</h3>
+        <p>Explore free mental well-being audio guides, relaxation and mindfulness apps, and online community apps through NHS resources.</p>
+        <a class="btn btn-secondary" href="https://www.nhs.uk/apps-library/category/mental-health/" target="_blank" rel="noopener">NHS apps library ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="help-card emergency reveal" style="margin-bottom:20px">
+      <h3>Important</h3>
+      <p>
+        This page is an educational guide and does not replace an individual clinical assessment.
+        Anxiety symptoms can overlap with physical and mental health conditions, so persistent or concerning symptoms
+        should be discussed with an appropriate healthcare professional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Further reading</div>
+      <h2>Trusted UK resources.</h2>
+      <p>External resources supplied for this page.</p>
+    </div>
+    <div class="resources">
+      <a class="resource reveal" href="https://www.nhs.uk/conditions/stress-anxiety-depression/understanding-panic/" target="_blank" rel="noopener">
+        <small>NHS</small><strong>Understanding panic</strong><span>Information about panic and anxiety</span>
+      </a>
+      <a class="resource reveal" href="https://www.nice.org.uk/guidance/qs53" target="_blank" rel="noopener">
+        <small>NICE</small><strong>Quality Standard QS53</strong><span>Anxiety disorders</span>
+      </a>
+      <a class="resource reveal" href="https://www.nhs.uk/live-well/sleep-and-tiredness/how-to-get-to-sleep/" target="_blank" rel="noopener">
+        <small>NHS</small><strong>How to get to sleep</strong><span>Sleep support</span>
+      </a>
+      <a class="resource reveal" href="https://www.nhs.uk/conditions/stress-anxiety-depression/moodzone-mental-wellbeing-audio-guides/" target="_blank" rel="noopener">
+        <small>NHS</small><strong>Well-being audio guides</strong><span>Free mental well-being guides</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <div class="kicker" style="color:var(--mint)">Need more support?</div>
+        <h2>Take the next step.</h2>
+        <p>Contact the team for private mental health assessment, diagnosis, therapy and anxiety treatment.</p>
+      </div>
+      <a class="btn" href="mailto:driqbal@iampsychiatry.com?subject=Private%20Anxiety%20Treatment">Contact the team →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© Thomson Clinic</span>
+    <span>Private Anxiety Treatment • UK</span>
+    <a href="booking.html">Book a consultation →</a>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('show');
+}
+
+function flipCard(card){
+  card.classList.toggle('flipped');
+}
+
+function check(button, correct){
+  const card = button.closest('.check-card');
+  card.querySelectorAll('.choice-row button').forEach(b => b.classList.remove('selected'));
+  button.classList.add('selected');
+
+  const result = card.querySelector('.result');
+  result.classList.add('show');
+
+  if(correct === 'yes'){
+    result.innerHTML = '<strong>Correct.</strong> That matches the key point in this guide.';
+  }else{
+    result.innerHTML = '<strong>Not quite.</strong> Re-read the explanation above and try again.';
+  }
+}
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('show'));
+});
+</script>
+
+</body>
+</html>
